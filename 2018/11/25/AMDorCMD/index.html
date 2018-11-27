@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="原CSDN博客网址 https://blog.csdn.net/qq_35414779">
+<meta name="description" content="AMD AMD —— Asynchronous Module Definition  异步加载模块，适合在浏览器端。定义了所有依赖，然后在加载完成的回调中再去执行。（requireJS）123require([module1,module2],function(module1,module2)&amp;#123;    //使用module1和module2&amp;#125;)">
 <meta name="keywords" content="前端,进阶">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分析AMD和CMD的区别">
 <meta property="og:url" content="https://www.fancyzhe.com/2018/11/25/AMDorCMD/index.html">
 <meta property="og:site_name" content="范喆的博客">
-<meta property="og:description" content="原CSDN博客网址 https://blog.csdn.net/qq_35414779">
+<meta property="og:description" content="AMD AMD —— Asynchronous Module Definition  异步加载模块，适合在浏览器端。定义了所有依赖，然后在加载完成的回调中再去执行。（requireJS）123require([module1,module2],function(module1,module2)&amp;#123;    //使用module1和module2&amp;#125;)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-25T10:57:00.757Z">
+<meta property="og:updated_time" content="2018-11-27T03:16:17.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分析AMD和CMD的区别">
-<meta name="twitter:description" content="原CSDN博客网址 https://blog.csdn.net/qq_35414779">
+<meta name="twitter:description" content="AMD AMD —— Asynchronous Module Definition  异步加载模块，适合在浏览器端。定义了所有依赖，然后在加载完成的回调中再去执行。（requireJS）123require([module1,module2],function(module1,module2)&amp;#123;    //使用module1和module2&amp;#125;)">
 
 
 
@@ -320,7 +320,22 @@
       
 
       
-        
+        <h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><blockquote>
+<p>AMD —— Asynchronous Module Definition</p>
+</blockquote>
+<p>异步加载模块，适合在浏览器端。定义了所有依赖，然后在加载完成的回调中再去执行。（requireJS）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require([module1,module2],function(module1,module2)&#123;</span><br><span class="line">    //使用module1和module2</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义模块 myModule.js</span><br><span class="line">define([&apos;dependency&apos;], function()&#123;</span><br><span class="line">    var name = &apos;Byron&apos;;</span><br><span class="line">    function printName()&#123;</span><br><span class="line">        console.log(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">        printName: printName</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 加载模块</span><br><span class="line">require([&apos;myModule&apos;], function (my)&#123;</span><br><span class="line">　 my.printName();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><blockquote>
+<p>CMD ——  Common Module Definition<br>同步加载，依赖就近，更适合在服务器端执行。(seaJS)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 定义模块  myModule.js</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  var $ = require(&apos;jquery.js&apos;)</span><br><span class="line">  $(&apos;div&apos;).addClass(&apos;active&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 加载模块</span><br><span class="line">seajs.use([&apos;myModule.js&apos;], function(my)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="AMD和CMD区别"><a href="#AMD和CMD区别" class="headerlink" title="AMD和CMD区别"></a>AMD和CMD区别</h2><blockquote>
+<p>AMD依赖前置，在定义模块的时候就要去声明依赖。<br>CMD推崇就近，需要模块的时候再去引用。</p>
+</blockquote>
+<p>AMD用户体验好，需要的模块都提前加载了。CMD性能好，需要的时候再去加载这些模块。</p>
+<p>参考<a href="https://blog.csdn.net/jackwen110200/article/details/52105493" target="_blank" rel="noopener">AMD和CMD区别</a></p>
+
       
     </div>
     
@@ -412,8 +427,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -466,6 +490,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD"><span class="nav-number">1.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMD"><span class="nav-number">2.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD和CMD区别"><span class="nav-number">3.</span> <span class="nav-text">AMD和CMD区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
