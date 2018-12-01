@@ -322,36 +322,17 @@
 
       
         
-          
-            <h2 id="介绍作用域"><a href="#介绍作用域" class="headerlink" title="介绍作用域"></a>介绍作用域</h2><p>程序中的一段源代码在执行会经历三个步骤，统称“编译”。</p>
+          <h2 id="介绍作用域"><a href="#介绍作用域" class="headerlink" title="介绍作用域"></a>介绍作用域</h2><p>程序中的一段源代码在执行会经历三个步骤，统称“编译”。</p>
 <blockquote>
 <p>词法分析 -&gt; 语法分析 -&gt; 代码生成</p>
 </blockquote>
-<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>词法作用域意味着作用域是由书写代码时函数声明的位置来决定。编译的词法分析阶段基本能知道全部标识符在哪里以及是如何声明的，从而能够预测在执行过程中如何对他们进行查找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var x = 4;</span><br><span class="line">function foo(a)&#123;</span><br><span class="line">    var b = 1;</span><br><span class="line">    function bar(c)&#123;</span><br><span class="line">        console.log(a,b,c,x);</span><br><span class="line">    &#125;</span><br><span class="line">    bar(b * 3);</span><br><span class="line">&#125;</span><br><span class="line">foo(2); //2,1,3,4</span><br></pre></td></tr></table></figure>
-<p>在上面的代码中有三个逐级嵌套的作用域</p>
-<ol>
-<li>包含整个全局作用域，其中有foo和x；</li>
-<li>包含foo创建的作用域，其中有三个标识符，b,bar,a;</li>
-<li>在bar函数中是最后一个函数作用域，只有一个标识符c；</li>
-</ol>
-<p>在bar函数中打印a,b,c时，会进行向上查找，类似js的冒泡机制，最先从自己的内部作用域进行查找，就是第三个作用域，找到了c，其他的没有找到就会到上一级作用域继续查找，在第二个作用域找到了a和b，在第一个作用域找到了x，最后打印出结果2,3,1,4。<br><strong>作用域查找会在找到第一个匹配的标识符时停止</strong> 这叫作“遮蔽效应”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var x = 4;</span><br><span class="line">function foo(a)&#123;</span><br><span class="line">    var b = 1,x=5;</span><br><span class="line">    function bar(c)&#123;</span><br><span class="line">        console.log(a,b,c,x);</span><br><span class="line">    &#125;</span><br><span class="line">    bar(b * 3);</span><br><span class="line">&#125;</span><br><span class="line">foo(2); //2,1,3,5</span><br></pre></td></tr></table></figure>
-<p>这时候找x标识符的时候在第二个作用域就找到了，就不会继续往上查找了，外层的声明x也不会覆盖函数里面定义的x。</p>
-<p><strong>可以通过间接的访问全局属性来访问被遮蔽的全局变量，但如果非全局变量被遮蔽了，就不能被访问到了。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 4;</span><br><span class="line">function foo(a)&#123;</span><br><span class="line">    var b = 1,x=5;</span><br><span class="line">    function bar(c)&#123;</span><br><span class="line">        console.log(a,b,c,window.x);</span><br><span class="line">    &#125;</span><br><span class="line">    bar(b * 3);</span><br><span class="line">&#125;</span><br><span class="line">foo(2); //2,1,3,4</span><br></pre></td></tr></table></figure></p>
-<p>这时候在查找x的时候访问的是window对象的属性值。</p>
-<h3 id="欺骗词法"><a href="#欺骗词法" class="headerlink" title="欺骗词法"></a>欺骗词法</h3><blockquote>
-<p>欺骗词法作用域会导致性能下降。</p>
-</blockquote>
-<h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><blockquote>
-<p>JavaScript中的eval()函数可以接受一个字符串为参数，将其中的内容好像在书写代码就存在于程序中的这个位置的代码一样。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo(str,a)&#123;</span><br><span class="line">    eval(str);</span><br><span class="line">    console(a,b);</span><br><span class="line">&#125;</span><br><span class="line">var b = 2;</span><br><span class="line">foo(&quot;var b = 3&quot;,1); //3,1</span><br></pre></td></tr></table></figure>
-<p>eval中的”var b = 3”相当于把这句代码插入进去执行。执行了后会在函数foo中找到a和b，有了遮蔽效应，所以在外面声明的”var b = 2”是不会被访问到的。<br><strong>严格模式下eval运行有自己的的词法作用域，是无法修改所在声明的作用域的。</strong></p>
-<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo(obj)&#123;</span><br><span class="line">    with(obj)&#123;</span><br><span class="line">        a=2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o1 = &#123;a:3&#125;;</span><br><span class="line">var o2 = &#123;b:3&#125;;</span><br><span class="line">foo(o1);</span><br><span class="line">console.log(o1.a);//2</span><br><span class="line">foo(o2);</span><br><span class="line">console.log(o2.a);//undefined</span><br><span class="line">console.log(a);//2</span><br></pre></td></tr></table></figure>
-<p>在对象中可以找到对应的标识符时，可以修改属性值，没找到对应的属性值，会自动创建一个全局变量。</p>
-<h2 id="函数作用域和块作用域"><a href="#函数作用域和块作用域" class="headerlink" title="函数作用域和块作用域"></a>函数作用域和块作用域</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/1/baseJs-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
