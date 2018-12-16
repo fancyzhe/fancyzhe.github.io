@@ -322,38 +322,14 @@
 
       
         
-          
-            <h2 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h2><p>操作系统内核对于I/O操作只有两种方式，<strong>阻塞和非阻塞</strong>。</p>
-<ul>
-<li>阻塞是要等事件在系统内核层面完成所有的操作，才是调用结束可以进行下一个调用。造成了一定的CPU浪费，CPU不能得到充分利用。</li>
-</ul>
-<blockquote>
-<p>阻塞调用-&gt;等待数据-&gt;返回数据</p>
-</blockquote>
-<ul>
-<li>非阻塞调用不带数据返回，调用后立即返回。返回过后，CPU就可以执行其他的事件，如果需要获取数据的话，需要通过文件描述符再次获取。</li>
-</ul>
-<blockquote>
-<p>非阻塞调用-&gt;立即返回-&gt;文件描述符-&gt;返回数据</p>
-</blockquote>
-<p>非阻塞调用立即获取的不是想要的数据，需要文件描述符去获取完整的数据。为了获取完整的数据，就需要在应用层不断去通过文件描述符去判断是否完成，这样的操作叫轮询，类似ajax的轮询。</p>
-<!-- 类似ajax的轮询，那在异步IO中能不能像websocket的一样建立双向通信，当完成异步后主动？ -->
-<p><strong>优缺点：</strong>阻塞造成了CPU等待浪费，非阻塞带来的麻烦是需要轮询去确认是否完成数据获取。</p>
-<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>Node会创建一个类似while(true)的事件循环（Tick循环），在tick循环中会有一个或者多个观察者，去检查是否有要执行的函数，如果有的话就执行。可以把事件循环理解成生产者/消费者模式，异步IO和网络请求是生产者，观察者是消费者。</p>
-<p>异步IO的关键词：<strong>单线程、事件循环，观察者和IO线程池。</strong><br>简单描述是，在单线程中建立了tick事件循环，观察者去判断IO线程池中是否有要执行的，需要执行的就执行，新加的异步IO会发起异步调用后将请求对象放到IO线程池中再次等待执行。</p>
-<h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="可能存在的问题"><a href="#可能存在的问题" class="headerlink" title="可能存在的问题"></a>可能存在的问题</h3><ol>
-<li>异常处理</li>
-</ol>
-<p>在使用try，catch时，捕获不到异常请求。</p>
-<ol start="2">
-<li>函数嵌套过深</li>
-</ol>
-<p>函数之间存在嵌套依赖关系，异步不会马上返回正确的数据。</p>
-<ol start="3">
-<li>阻塞代码</li>
-</ol>
-
-          
+          <h2 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h2><p>操作系统内核对于I/O操作只有两种方式，<strong>阻塞和非阻塞</strong>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/16/node2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
