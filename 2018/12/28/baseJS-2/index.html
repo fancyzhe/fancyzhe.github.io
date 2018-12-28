@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="前端,基础,JavaScript,">
 
 
 
@@ -79,19 +79,18 @@
 
 
 
-<meta name="description" content="is-obj  Check if a value is an object  Keep in mind that array, function, regexp, etc, are objects in JavaScript.See is-plain-obj if you want to check for plain objects. Install1$ npm install --save i">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十一的博客">
-<meta property="og:url" content="https://www.fancyzhe.com/image/node_modules/deep-assign/node_modules/is-obj/readme.html">
+<meta name="description" content="CORS Cross-Origin Resource Sharing跨域资源共享  前言同源策略是为了减少XSS和CSRF攻击，跨域是由浏览器的同源策略导致的。 同源策略会导致  缓存无法访问 DOM和JS无法访问 AJAX请求不能使用">
+<meta name="keywords" content="前端,基础,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我知道的JavaScript（2）-- 解决跨域">
+<meta property="og:url" content="https://www.fancyzhe.com/2018/12/28/baseJS-2/index.html">
 <meta property="og:site_name" content="十一的博客">
-<meta property="og:description" content="is-obj  Check if a value is an object  Keep in mind that array, function, regexp, etc, are objects in JavaScript.See is-plain-obj if you want to check for plain objects. Install1$ npm install --save i">
+<meta property="og:description" content="CORS Cross-Origin Resource Sharing跨域资源共享  前言同源策略是为了减少XSS和CSRF攻击，跨域是由浏览器的同源策略导致的。 同源策略会导致  缓存无法访问 DOM和JS无法访问 AJAX请求不能使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://travis-ci.org/sindresorhus/is-obj.svg?branch=master">
-<meta property="og:updated_time" content="2016-03-22T09:42:22.000Z">
+<meta property="og:updated_time" content="2018-12-28T09:59:43.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十一的博客">
-<meta name="twitter:description" content="is-obj  Check if a value is an object  Keep in mind that array, function, regexp, etc, are objects in JavaScript.See is-plain-obj if you want to check for plain objects. Install1$ npm install --save i">
-<meta name="twitter:image" content="https://travis-ci.org/sindresorhus/is-obj.svg?branch=master">
+<meta name="twitter:title" content="我知道的JavaScript（2）-- 解决跨域">
+<meta name="twitter:description" content="CORS Cross-Origin Resource Sharing跨域资源共享  前言同源策略是为了减少XSS和CSRF攻击，跨域是由浏览器的同源策略导致的。 同源策略会导致  缓存无法访问 DOM和JS无法访问 AJAX请求不能使用">
 
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.fancyzhe.com/image/node_modules/deep-assign/node_modules/is-obj/readme.html">
+  <link rel="canonical" href="https://www.fancyzhe.com/2018/12/28/baseJS-2/">
 
 
 
 
 
-  <title> | 十一的博客</title>
+  <title>我知道的JavaScript（2）-- 解决跨域 | 十一的博客</title>
   
 
 
@@ -242,40 +241,170 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.fancyzhe.com/2018/12/28/baseJS-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/title.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十一的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="is-obj"><a href="#is-obj" class="headerlink" title="is-obj "></a>is-obj <a href="https://travis-ci.org/sindresorhus/is-obj" target="_blank" rel="noopener"><img src="https://travis-ci.org/sindresorhus/is-obj.svg?branch=master" alt="Build Status"></a></h1><blockquote>
-<p>Check if a value is an object</p>
+          <h1 class="post-title" itemprop="name headline">我知道的JavaScript（2）-- 解决跨域</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T17:17:58+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>CORS Cross-Origin Resource Sharing跨域资源共享</p>
 </blockquote>
-<p>Keep in mind that array, function, regexp, etc, are objects in JavaScript.<br><br>See <a href="https://github.com/sindresorhus/is-plain-obj" target="_blank" rel="noopener"><code>is-plain-obj</code></a> if you want to check for plain objects.</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save is-obj</span><br></pre></td></tr></table></figure>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isObj = <span class="built_in">require</span>(<span class="string">'is-obj'</span>);</span><br><span class="line"></span><br><span class="line">isObj(&#123;<span class="attr">foo</span>: <span class="string">'bar'</span>&#125;);</span><br><span class="line"><span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line">isObj([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="comment">//=&gt; true</span></span><br><span class="line"></span><br><span class="line">isObj(<span class="string">'foo'</span>);</span><br><span class="line"><span class="comment">//=&gt; false</span></span><br></pre></td></tr></table></figure>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>MIT © <a href="https://sindresorhus.com" target="_blank" rel="noopener">Sindre Sorhus</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>同源策略是为了减少XSS和CSRF攻击，跨域是由浏览器的同源策略导致的。</p>
+<p>同源策略会导致</p>
+<ol>
+<li>缓存无法访问</li>
+<li>DOM和JS无法访问</li>
+<li>AJAX请求不能使用</li>
+</ol>
+<a id="more"></a>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="JsonP"><a href="#JsonP" class="headerlink" title="JsonP"></a>JsonP</h3><p>基本原理是动态加载一个script便签，从而实现跨域访问。<strong>仅限于get请求</strong></p>
+<h3 id="CORS跨域资源共享"><a href="#CORS跨域资源共享" class="headerlink" title="CORS跨域资源共享"></a>CORS跨域资源共享</h3><p>在服务器端要开放跨域，设置Access-Control-Allow-Origin，值为允许访问的域。</p>
+<h3 id="代理跨域"><a href="#代理跨域" class="headerlink" title="代理跨域"></a>代理跨域</h3><p>在webpack中可以设置端口代理(反向代理)，这样就可以在开发过程中没有跨域的问题。</p>
+<p>而在线上环境，可以使用nginx去反向代理接口进行跨域。</p>
+<p>还可以设置node中间件去转发请求，原理跟nginx代理相似。</p>
+<hr>
+<h3 id="document-domain-iframe的设置"><a href="#document-domain-iframe的设置" class="headerlink" title="document.domain+iframe的设置"></a>document.domain+iframe的设置</h3><p>此方案仅限主域相同，子域不同的跨域应用场景。</p>
+<p>实现原理：两个页面都通过js强制设置document.domain为基础主域，就实现了同域。</p>
+<h3 id="HTML5的postMessage"><a href="#HTML5的postMessage" class="headerlink" title="HTML5的postMessage"></a>HTML5的postMessage</h3><p>postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一</p>
+<h3 id="使用window-name来进行跨域"><a href="#使用window-name来进行跨域" class="headerlink" title="使用window.name来进行跨域"></a>使用window.name来进行跨域</h3><p>window.name属性的独特之处：name值在不同的页面（甚至不同域名）加载后依旧存在</p>
+<hr>
+<p><strong>后面三种不太常用，没有做深入了解。推荐具体实施前三种</strong></p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/28/yaho35/" rel="next" title="雅虎35军规（1） -- 内容和服务（译）">
+                <i class="fa fa-chevron-left"></i> 雅虎35军规（1） -- 内容和服务（译）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -381,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#is-obj"><span class="nav-number">1.</span> <span class="nav-text">is-obj </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">1.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">1.3.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JsonP"><span class="nav-number">2.1.</span> <span class="nav-text">JsonP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS跨域资源共享"><span class="nav-number">2.2.</span> <span class="nav-text">CORS跨域资源共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理跨域"><span class="nav-number">2.3.</span> <span class="nav-text">代理跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-domain-iframe的设置"><span class="nav-number">2.4.</span> <span class="nav-text">document.domain+iframe的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5的postMessage"><span class="nav-number">2.5.</span> <span class="nav-text">HTML5的postMessage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用window-name来进行跨域"><span class="nav-number">2.6.</span> <span class="nav-text">使用window.name来进行跨域</span></a></li></ol></li></ol></div>
             
 
           </div>
