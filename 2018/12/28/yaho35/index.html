@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="十一的博客">
 <meta property="og:description" content="原文地址雅虎35军规 雅虎的专业性能团队为了web网页能更加快速，制定了7个方面的35条最好实践方式。 分成这个七个方面：内容、服务、缓存、css样式、JavaScript、图像、移动端、全部">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T07:43:52.107Z">
+<meta property="og:updated_time" content="2018-12-28T08:33:28.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="雅虎35军规（翻译）">
 <meta name="twitter:description" content="原文地址雅虎35军规 雅虎的专业性能团队为了web网页能更加快速，制定了7个方面的35条最好实践方式。 分成这个七个方面：内容、服务、缓存、css样式、JavaScript、图像、移动端、全部">
@@ -338,10 +338,13 @@
 <p>为了让没有缓存访问网站的40%-60%的日常用户有更好的用户体验，让你的网站第一次访问的更快是最关键的。</p>
 </blockquote>
 <h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><ol start="2">
-<li>使用分布式网络</li>
+<li>使用分布式网络（CDN）</li>
 </ol>
 <p>用户跟你web服务器的距离影响着相应的时间，通过多点发布你的内容，站在用户的角度多个地方的服务器会让你的页面加载的更快。但是你应该从哪里开始呢？</p>
-<p>作为多地点分布式内容的第一步，不要为了在分布式架构上运行而尝试重新设计你的web应用</p>
+<p>作为多地点分布式内容的第一步，不要为了在分布式架构上运行而尝试重新设计你的web应用。依赖应用，改变你的架构可能有很多复杂的任务比如同步会话状态和通过本地服务器复制数据库传输。尝试着去缩小用户和你的内容的距离可能被延迟或者没有通过这个架构的步骤。</p>
+<p>应该牢记的是80%-90%的相应时间都会被花费在下载所有页面的图像、css、JavaScript、flash等。这是性能黄金法则（Performance Golden Rule）。相比开始重新设计你的程序架构这样的困难任务，更好的方式是将你的静态内容分布式。这不仅仅让响应时间大大减少，并且对于分布式网络更容易实现。</p>
+<p>CDN是分布式网络给用户高效的发送内容通过多地点传输内容。这个服务器选择传输内容给专门的用户是建立在以距离测量的更近的网络。举一个例子，最少的网络ping值服务器和最快响应服务器是更合适的。</p>
+<p>一些大型的网络公司有自己的CDN服务，但是使用CDN服务提供者是有一定的成本效益的。比如Akamai Technologies、EdgeCast、level3。对于创业公司（start-up companies）和私人站点，CDN服务费用过高，但是为了让你的目标群众更多更全球化，CDN是减少响应时间的必要方式。在雅虎，网站静态内容放在CDN上让性能提高和响应时间减少20%甚至更多。转变为CDN是一种相对改变代码来说更简单的方式去显著改变你网站的加载速度。</p>
 
       
     </div>
@@ -383,6 +386,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/28/web1/Best Practices for Speeding Up Your Web Site - Yahoo Developer Network_files/font-awesome.min/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -461,7 +468,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
